@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 11% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+    --primary: 195 100% 39%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 142 69% 58%;
+    --secondary-foreground: 210 11% 15%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 210 11% 15%;
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 195 100% 39%;
+    --radius: 0.75rem;
+    --mui-background: hsl(var(--background));
+    --mui-border: hsl(var(--border));
+    --mui-ring: hsl(var(--ring));
+    --mui-foreground: hsl(var(--foreground));
+
+    /* Custom brand colors */
+    --brand-primary: 195 100% 39%;
+    --brand-secondary: 142 69% 58%;
+    --brand-light: 75 60% 96%;
+    --brand-dark: 195 20% 15%;
+    --error: 0 65% 51%;
+    --success: 152 55% 29%;
+    --warning: 25 100% 63%;
+    --gray: 200 15% 69%;
+  }
+
+  .dark {
+    --background: 195 20% 15%;
+    --foreground: 210 40% 98%;
+    --card: 195 20% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 195 20% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 195 100% 39%;
+    --primary-foreground: 195 20% 15%;
+    --secondary: 142 69% 58%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 195 15% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 195 15% 20%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 195 15% 20%;
+    --input: 195 15% 20%;
+    --ring: 195 100% 39%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-primary;
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gray) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gray) / 0.7);
+}
+
+/* Grid background pattern */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(36, 54, 54, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 54, 54, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.MuiOutlinedInput-root {
+  background-color: var(--mui-background) !important;
+}
+.MuiOutlinedInput-root fieldset {
+  border-color: var(--mui-border) !important;
+}
+.MuiOutlinedInput-root:hover fieldset {
+  border-color: var(--mui-border) !important;
+}
+.MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: var(--mui-ring) !important;
+}
+.MuiInputLabel-root {
+  color: var(--mui-foreground) !important;
+}
+.MuiInputBase-input {
+  color: var(--mui-foreground) !important;
+}
+.MuiPopper-root {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
